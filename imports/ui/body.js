@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { BlogPosts } from '../api/blogposts.js'; 
 import './body.html';
@@ -35,7 +36,7 @@ Template.addBlogPostForm.events({
             Title: title,
             Description: description,
             CreatedDate: new Date(),
-            User: user,
+            User: Meteor.user().username,
           });
        
           // Clear form
@@ -63,4 +64,8 @@ Template.body.helpers({
   blogPosts() {
     return BlogPosts.find({}, { sort: { CreatedDate: -1 } });
   },
+});
+
+Template.registerHelper('formatDate', function(date) {
+  return moment(date).format('dddd, MMMM Do YYYY, h:mm:ss a');
 });

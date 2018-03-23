@@ -1,18 +1,22 @@
 <body>
   <div class="container">
     <header>
-      <h1>Blog List</h1>
-      {{> addBlogPostForm}}
+      <h1>Aspace</h1>
+    <p id="login">
+      {{> loginButtons}}
+    </p>  
     </header>
  
+    {{#if currentUser}}
+    <p>
+      {{> addBlogPostForm}}
+    </p>  
+    {{/if}}
     <ul>
       {{#each blogPosts}}
         {{> blogPost}}
       {{/each}}
     </ul>
-    {{#if editing}}
-  blah i am editing
-  {{/if}} 
   
   </div>
 </body>
@@ -24,9 +28,23 @@
   </li>
   {{else}}  
   <li>
-    <button class="delete">&times; Delete</button>
-    <button class="editItem">Edit</button>
-    {{Title}} {{Description}} {{CreatedDate}} {{User}}
+
+    {{#if currentUser}}
+      <button class="delete">&times; Delete</button>
+      <button class="editItem">Edit</button>
+    {{/if}}
+
+    <p>
+      {{Title}} 
+    </p>
+
+    <p>      
+      {{Description}} 
+    </p>
+
+    <p>
+      {{formatDate CreatedDate}} by {{User}}
+    </p>
   </li>
   {{/if}}
 </template>
@@ -37,10 +55,7 @@
          Title <input type="text" name="title" placeholder="Title" />
       </p>
       <p>
-         Description <input type="text" name="description" placeholder="Description" />
-      </p>
-      <p>
-         User <input type="text" name="user" placeholder="User" />
+         Description <textarea rows="4" cols="50" name="description">  </textarea>
       </p>
         <input type="submit" value="Save">
     </form>
