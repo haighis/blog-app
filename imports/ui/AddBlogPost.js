@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BlogPosts } from '../api/blogposts';
+import { Meteor } from 'meteor/meteor';
 
 class AddBlogPost extends Component {
 	handleSubmit(event) {
@@ -15,7 +16,7 @@ class AddBlogPost extends Component {
 			  Title: title,
 			  Description: description,
 			  CreatedDate: new Date(),
-			  User: 'JohnHaigh'
+			  User: Meteor.user().username
 			});
 			// Clear form
 			ReactDOM.findDOMNode(this.refs.titleInput).value = '';
