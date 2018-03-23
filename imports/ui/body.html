@@ -2,6 +2,7 @@
   <div class="container">
     <header>
       <h1>Blog List</h1>
+      {{> addBlogPostForm}}
     </header>
  
     <ul>
@@ -9,9 +10,38 @@
         {{> blogPost}}
       {{/each}}
     </ul>
+    {{#if editing}}
+  blah i am editing
+  {{/if}} 
+  
   </div>
 </body>
  
 <template name="blogPost">
-  <li>{{Title}} {{Description}} {{CreatedDate}} {{User}}</li>
+  {{#if editing}}
+  <li>
+    <input type="text" id="editItemTitle" value="{{title}}">  
+  </li>
+  {{else}}  
+  <li>
+    <button class="delete">&times; Delete</button>
+    <button class="editItem">Edit</button>
+    {{Title}} {{Description}} {{CreatedDate}} {{User}}
+  </li>
+  {{/if}}
+</template>
+
+<template name="addBlogPostForm">
+    <form class="new-blogpost">
+      <p>
+         Title <input type="text" name="title" placeholder="Title" />
+      </p>
+      <p>
+         Description <input type="text" name="description" placeholder="Description" />
+      </p>
+      <p>
+         User <input type="text" name="user" placeholder="User" />
+      </p>
+        <input type="submit" value="Save">
+    </form>
 </template>
