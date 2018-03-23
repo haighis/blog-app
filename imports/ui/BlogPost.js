@@ -5,9 +5,6 @@ import moment from 'moment';
 export default class BlogPost extends Component {
  	
   render() {
-    const date = new Date();
-	const formattedDate = moment(date).format("LLL");
-
     return (
       <li>
        <p>
