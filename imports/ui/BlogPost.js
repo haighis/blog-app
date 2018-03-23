@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
- 
+import moment from 'moment';
+
 // Blog component for a single blog post item
 export default class BlogPost extends Component {
+ 	
   render() {
+    const date = new Date();
+	const formattedDate = moment(date).format("LLL");
+
     return (
       <li>
        <p>
@@ -12,7 +17,7 @@ export default class BlogPost extends Component {
 	      {this.props.blogPost.Description} 
 	    </p>
 	    <p>
-	       by {this.props.blogPost.User}
+	       { moment(this.props.blogPost.CreatedDate.toString()).format("dddd, MMMM Do YYYY, h:mm:ss a") } by {this.props.blogPost.User}
 	    </p>
       </li>
     );

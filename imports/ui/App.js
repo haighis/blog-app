@@ -7,25 +7,11 @@ import { BlogPosts } from '../api/blogposts.js';
 
 // App component - represents the whole app
 class App extends Component {
-  constructor(props) {
-    super(props);
-    console.log('in constructor', this.props.blogPosts)
-  }
-
-  getBlogPosts() {
-    return [
-      { _id: 1, Title: 'Test title 1', Description: 'test description', User: 'JohnHaigh' },
-      { _id: 2, Title: 'Test title 2', Description: 'test description', User: 'JohnHaigh' }
-    ];
-  }
-
   renderBlogPosts() {
-    return this.getBlogPosts().map((post) => (
-      //return this.props.posts.map((post) => (
+      return this.props.posts.map((post) => (
       <BlogPost key={post._id} blogPost={post} />
     ));
   }
- 
   render() {
     return (
       <div className="container">
