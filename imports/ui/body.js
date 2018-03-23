@@ -28,8 +28,7 @@ Template.addBlogPostForm.events({
         const user = target.user.value;
         
         if(title !== '' &&
-          description !== '' && 
-          user !== '') {
+          description !== '') {
 
           // Insert Blog Post into the collection
           BlogPosts.insert({
